@@ -21,3 +21,22 @@ func FindMovieById(id int) models.Movie {
 
 	return movie
 }
+
+func CreateMovie(movie models.Movie) models.Movie {
+	database.DB.Create(&movie)
+
+	return movie
+}
+
+func DeleteMovie(id int) {
+	database.DB.Delete(&models.Movie{}, id)
+}
+
+func UpdateMovie(id int, movie models.Movie) {
+	movieDb := FindMovieById(id)
+
+	movieDb.Title = movie.Title
+	movieDb.Year = movie.Year
+
+	database.DB.Save(&movieDb)
+}
