@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -10,10 +9,6 @@ import (
 	"github.com/GiovanniBranco/api-rest-golang/models"
 	"github.com/gorilla/mux"
 )
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Home page")
-}
 
 func GetAllMovies(w http.ResponseWriter, r *http.Request) {
 	movies := repositories.FindAllMovies()
@@ -45,7 +40,6 @@ func UpdateMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteMovie(w http.ResponseWriter, r *http.Request) {
-
 	movieId := getMovieIdFromRoute(r)
 	repositories.DeleteMovie(movieId)
 	w.WriteHeader(http.StatusNoContent)
@@ -61,3 +55,5 @@ func getMovieIdFromRoute(r *http.Request) int {
 
 	return movieId
 }
+
+
